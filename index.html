@@ -1,0 +1,16 @@
+https://jpst.it/3GAaH
+import pandas as pd
+import torch
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+path = "C:\\CSV\\tripadvisor_hotel_reviews.csv"
+df = pd.read_csv(path)
+df.head()
+Review	Rating
+0	nice hotel expensive parking got good deal sta...	4
+1	ok nothing special charge diamond member hilto...	2
+2	nice rooms not 4* experience hotel monaco seat...	3
+3	unique, great stay, wonderful time hotel monac...	5
+4	great stay great stay, went seahawk game aweso...	5
+neutral_range= {"low":4,"high":5}
+df["Sentiment"] = df['Rating'].apply(lambda rating: "neutral" if neutral_range['low']<= rating <= neutral_range["high"] else "non-neutral") )
+df
